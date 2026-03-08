@@ -3,7 +3,7 @@ using UnityEngine;
 // Generates a procedural map using Perlin noise and displays it. Following Sebastian Lague's tutorial.
 public class MapGenerator : MonoBehaviour
 {
-    public enum DrawMode { NoiseMap, ColorMap, Mesh };
+    public enum DrawMode { NoiseMap, ColourMap, Mesh };
     public DrawMode drawMode;
 
 
@@ -28,7 +28,7 @@ public class MapGenerator : MonoBehaviour
         // Generate a noise map using the Noise class
         float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, seed, noiseScale, octaves, persistance, lacunarity, offset);
 
-        Color[] colorMap = new Color[mapWidth * mapHeight];
+        Color[] colourMap = new Color[mapWidth * mapHeight];
         // Create a color map based on the generated noise map and terrain regions
         for (int y = 0; y < mapHeight; y++)
         {
@@ -41,7 +41,7 @@ public class MapGenerator : MonoBehaviour
                     // if the current height is less than or equal to the region height, assign the corresponding color
                     if (currentHeight <= regions[i].height)
                     {
-                        colorMap[y * mapWidth + x] = regions[i].color;
+                        colourMap[y * mapWidth + x] = regions[i].colour;
                         break;
                     }
                 }
@@ -49,18 +49,18 @@ public class MapGenerator : MonoBehaviour
         }
 
         // Display the generated noise map using the MapDisplay class
-        MapDisplay display = FindFirstObjectByType<MapDisplay>();
+        MapDisplay display = FindAnyObjectByType<MapDisplay>();
         if (drawMode == DrawMode.NoiseMap)
         {
             display.DrawTexture(TextureGenerator.TextureFromHeightMap(noiseMap));
         }
-        else if (drawMode == DrawMode.ColorMap)
+        else if (drawMode == DrawMode.ColourMap)
         {
-            display.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
+            display.DrawTexture(TextureGenerator.TextureFromColourMap(colourMap, mapWidth, mapHeight));
         }
         else if (drawMode == DrawMode.Mesh)
         {
-            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap), TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
+            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap), TextureGenerator.TextureFromColourMap(colourMap, mapWidth, mapHeight));
         }
     }
 
@@ -91,5 +91,5 @@ public struct TerrainType
 {
     public string name;
     public float height;
-    public Color color;
+    public Color colour;
 }
