@@ -13,7 +13,7 @@ public static class MeshGenerator
         float topLeftZ = (height - 1) / 2f;
 
         // If level of detail is 0, Then we want to use every vertex. Otherwise, we skip vertices based on the level of detail.
-        int meshSimplificationIncrement = (levelOfDetail == 0) ? 1:levelOfDetail * 2;
+        int meshSimplificationIncrement = (levelOfDetail == 0)?1:levelOfDetail * 2;
         int verticesPerLine = (width - 1) / meshSimplificationIncrement + 1;
 
         MeshData meshData = new MeshData(verticesPerLine, verticesPerLine);
@@ -31,7 +31,7 @@ public static class MeshGenerator
                 {
                     // Create two triangles for each square in the grid
                     meshData.AddTriangle(vertexIndex, vertexIndex + verticesPerLine + 1, vertexIndex + verticesPerLine);
-                    meshData.AddTriangle(vertexIndex + width + 1, vertexIndex, vertexIndex + 1);
+                    meshData.AddTriangle(vertexIndex + verticesPerLine + 1, vertexIndex, vertexIndex + 1);
                 }
                 vertexIndex++;
             }
