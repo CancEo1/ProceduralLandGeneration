@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2293.3335
     height: 884
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 27
+  controlID: 52
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 28
+  controlID: 53
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 29
+  controlID: 19
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -273,7 +273,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1723.3334
     y: 0
-    width: 271.33325
+    width: 270
     height: 828
   m_MinSize: {x: 202, y: 226}
   m_MaxSize: {x: 4002, y: 4026}
@@ -297,9 +297,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1994.6666
+    x: 1993.3334
     y: 0
-    width: 298.66663
+    width: 299.99988
     height: 828
   m_MinSize: {x: 276, y: 76}
   m_MaxSize: {x: 4001, y: 4026}
@@ -1350,9 +1350,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 4.1357956, y: 2.1184242, z: -2.991075}
+    m_Target: {x: -277.98907, y: -24.447311, z: -38.079773}
     speed: 2
-    m_Value: {x: 4.1357956, y: 2.1184242, z: -2.991075}
+    m_Value: {x: -277.98907, y: -24.447311, z: -38.079773}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1399,13 +1399,13 @@ MonoBehaviour:
     m_gridOpacity: 0.5
     m_NearestPlaneToHandleMode: 0
   m_Rotation:
-    m_Target: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+    m_Target: {x: -0.16781601, y: 0.30440626, z: -0.054598503, w: -0.9360894}
     speed: 2
-    m_Value: {x: -0.7071068, y: 0, z: -0, w: -0.7071068}
+    m_Value: {x: -0.16781601, y: 0.30440626, z: -0.054598503, w: -0.9360894}
   m_Size:
-    m_Target: 484.84686
+    m_Target: 260.50592
     speed: 2
-    m_Value: 484.84686
+    m_Value: 260.50592
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1593,7 +1593,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Materials
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1603,7 +1603,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Materials
   m_LastFoldersGridSize: 96
   m_LastProjectPath: B:\gameDevFiles\ProceduralLandGeneration
   m_LockTracker:
@@ -1612,16 +1612,16 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_Data: 46830
+    - m_Data: 47138
     m_LastClickedID:
-      m_Data: 46830
+      m_Data: 47138
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 46828
-    - m_Data: 46830
-    - m_Data: 46832
-    - m_Data: 46834
-    - m_Data: 46836
+    - m_Data: 46962
+    - m_Data: 46964
+    - m_Data: 46966
+    - m_Data: 46968
+    - m_Data: 46970
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1655,11 +1655,11 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 46828
-    - m_Data: 46830
-    - m_Data: 46832
-    - m_Data: 46834
-    - m_Data: 46836
+    - m_Data: 46962
+    - m_Data: 46964
+    - m_Data: 46966
+    - m_Data: 46968
+    - m_Data: 46970
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1688,9 +1688,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 33586
+    - m_Data: 46716
     m_LastClickedEntityId:
-      m_Data: 33586
+      m_Data: 46716
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 54396
@@ -1828,7 +1828,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1724.3334
     y: 24
-    width: 269.33325
+    width: 268
     height: 802
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1900,9 +1900,9 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1995.6666
+    x: 1994.3334
     y: 24
-    width: 297.66663
+    width: 298.99988
     height: 802
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1927,7 +1927,7 @@ MonoBehaviour:
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectEntityId:
     m_Data: 0
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 54
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
