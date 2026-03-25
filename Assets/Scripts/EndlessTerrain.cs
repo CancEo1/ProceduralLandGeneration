@@ -3,19 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 
+// Manages the generation and display of terrain chunks around the viewer's position to create an endless terrain effect. Following Sebastian Lague's tutorial.
 public class EndlessTerrain : MonoBehaviour
 {
-    public const float maxViewDst = 300;
+    public const float maxViewDst = 450;
     public Transform viewer;
 
     public static Vector2 viewerPosition;
+    static MapGenerator mapGenerator;
     int chunkSize;
     int chunksVisibleInViewDst;
 
     Dictionary<Vector2, TerrainChunk> terrainChunkDictionary = new Dictionary<Vector2, TerrainChunk>();
+    List<TerrainChunk> terrainChunksVisibleLastUpdate = new List<TerrainChunk>();
 
-    private void Start()
+    void Start()
     {
+        mapGenerator = FindAnyObjectByType<MapGenerator>();
         chunkSize = MapGenerator.mapChunkSize - 1;
         chunksVisibleInViewDst = Mathf.RoundToInt(maxViewDst / chunkSize);
     }
@@ -28,6 +32,12 @@ public class EndlessTerrain : MonoBehaviour
 
     void UpdateVisibleChunks() 
     {
+        for (int i = 0; i < terrainChunksVisibleLastUpdate.Count; i++)
+        {
+            terrainChunksVisibleLastUpdate[i].SetVisible(false);
+        }
+        terrainChunksVisibleLastUpdate.Clear();
+
         int currentChunkCoordX = Mathf.RoundToInt(viewerPosition.x / chunkSize);
         int currentChunkCoordY = Mathf.RoundToInt(viewerPosition.y / chunkSize);
 
@@ -40,10 +50,14 @@ public class EndlessTerrain : MonoBehaviour
                 if (terrainChunkDictionary.ContainsKey(viewedChunkCoord))
                 {
                     terrainChunkDictionary[viewedChunkCoord].UpdateTerrainChunk();
+                    if (terrainChunkDictionary[viewedChunkCoord].IsVisible())
+                    {
+                        terrainChunksVisibleLastUpdate.Add(terrainChunkDictionary[viewedChunkCoord]);
+                    }
                 }
                 else
                 {
-                    terrainChunkDictionary.Add(viewedChunkCoord, new TerrainChunk(viewedChunkCoord, chunkSize));
+                    terrainChunkDictionary.Add(viewedChunkCoord, new TerrainChunk(viewedChunkCoord, chunkSize, transform));
                 }
             }
         }
@@ -54,16 +68,24 @@ public class EndlessTerrain : MonoBehaviour
         Vector2 position;
         Bounds bounds;
 
-        public TerrainChunk(Vector2 coord, int size) 
+        public TerrainChunk(Vector2 coord, int size, Transform parent) 
         {
             position = coord * size;
             bounds = new Bounds(position, Vector2.one * size);
             Vector3 positionV3 = new Vector3(position.x, 0, position.y);
 
-            meshObject = GameObject.CreatePrimitive(PrimitiveType.Plane);
+            meshObject = new GameObject("Terrain Chunk");
             meshObject.transform.position = positionV3;
             meshObject.transform.localScale = Vector3.one * size / 10f;
+            meshObject.transform.parent = parent;
             SetVisible(false);
+
+            mapGenerator.RequestMapData(OnMapDataReceived);
+        }
+
+        void OnMapDataReceived(MapData mapData)
+        {
+            print("Received map data for chunk at ");
         }
 
         public void UpdateTerrainChunk()
@@ -76,6 +98,11 @@ public class EndlessTerrain : MonoBehaviour
         public void SetVisible(bool visible)
         {
             meshObject.SetActive(visible);
+        }
+
+        public bool IsVisible()
+        {
+            return meshObject.activeSelf;
         }
     }
 }

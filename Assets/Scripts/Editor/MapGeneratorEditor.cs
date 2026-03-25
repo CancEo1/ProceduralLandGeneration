@@ -15,14 +15,14 @@ public class MapGeneratorEditor : Editor
             // Regenerate the map if any inspector value changes and autoUpdate is enabled
             if (mapGen.autoUpdate)
             {
-                mapGen.GenerateMap();
+                mapGen.DrawMapInEditor();
             }
         }
 
         // Create a custome generate map button
         if (GUILayout.Button("Generate Map"))
         {
-            mapGen.GenerateMap();
+            mapGen.DrawMapInEditor();
         }
     }
 }

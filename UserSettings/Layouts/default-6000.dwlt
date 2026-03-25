@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2293.3335
     height: 884
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Inspector
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 52
+  controlID: 27
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 53
+  controlID: 28
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 19
+  controlID: 29
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -1350,13 +1350,13 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -277.98907, y: -24.447311, z: -38.079773}
+    m_Target: {x: -247.41766, y: 19.969915, z: -46.74392}
     speed: 2
-    m_Value: {x: -277.98907, y: -24.447311, z: -38.079773}
+    m_Value: {x: -247.41766, y: 19.969915, z: -46.74392}
   m_RenderMode: 0
   m_CameraMode:
-    drawMode: 0
-    name: Shaded
+    drawMode: 2
+    name: Shaded Wireframe
     section: Shading Mode
   m_ValidateTrueMetals: 0
   m_DoValidateTrueMetals: 0
@@ -1399,13 +1399,13 @@ MonoBehaviour:
     m_gridOpacity: 0.5
     m_NearestPlaneToHandleMode: 0
   m_Rotation:
-    m_Target: {x: -0.16781601, y: 0.30440626, z: -0.054598503, w: -0.9360894}
+    m_Target: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
     speed: 2
-    m_Value: {x: -0.16781601, y: 0.30440626, z: -0.054598503, w: -0.9360894}
+    m_Value: {x: -0.7071068, y: 0, z: -0, w: -0.7071068}
   m_Size:
-    m_Target: 260.50592
+    m_Target: 1093.922
     speed: 2
-    m_Value: 260.50592
+    m_Value: 1093.922
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1593,7 +1593,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Materials
+    - Assets/Scripts
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1603,7 +1603,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Materials
+  - Assets/Scripts
   m_LastFoldersGridSize: 96
   m_LastProjectPath: B:\gameDevFiles\ProceduralLandGeneration
   m_LockTracker:
@@ -1612,16 +1612,16 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_Data: 47138
+    - m_Data: 46964
     m_LastClickedID:
-      m_Data: 47138
+      m_Data: 46964
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 46962
-    - m_Data: 46964
-    - m_Data: 46966
-    - m_Data: 46968
-    - m_Data: 46970
+    - m_Data: 46844
+    - m_Data: 46846
+    - m_Data: 46848
+    - m_Data: 46850
+    - m_Data: 46852
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1655,11 +1655,11 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 46962
-    - m_Data: 46964
-    - m_Data: 46966
-    - m_Data: 46968
-    - m_Data: 46970
+    - m_Data: 46844
+    - m_Data: 46846
+    - m_Data: 46848
+    - m_Data: 46850
+    - m_Data: 46852
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1688,9 +1688,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 46716
+    - m_Data: 46852
     m_LastClickedEntityId:
-      m_Data: 46716
+      m_Data: 46852
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 54396
@@ -1852,7 +1852,7 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -1330
+      - m_Data: -1372
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1870,7 +1870,7 @@ MonoBehaviour:
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_TrimLeadingAndTrailingWhitespace: 0
-        m_ClientGUIView: {fileID: 11}
+        m_ClientGUIView: {fileID: 0}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootEntityId:
@@ -1927,7 +1927,7 @@ MonoBehaviour:
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectEntityId:
     m_Data: 0
-  m_LastVerticalScrollValue: 54
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
