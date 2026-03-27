@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2293.3335
     height: 884
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -1350,9 +1350,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -247.41766, y: 19.969915, z: -46.74392}
+    m_Target: {x: 298.21893, y: -1033.317, z: -208.05547}
     speed: 2
-    m_Value: {x: -247.41766, y: 19.969915, z: -46.74392}
+    m_Value: {x: 298.21893, y: -1033.317, z: -208.05547}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 2
@@ -1399,13 +1399,13 @@ MonoBehaviour:
     m_gridOpacity: 0.5
     m_NearestPlaneToHandleMode: 0
   m_Rotation:
-    m_Target: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+    m_Target: {x: 0.43924487, y: -0.55160934, z: 0.42934453, w: 0.5643305}
     speed: 2
-    m_Value: {x: -0.7071068, y: 0, z: -0, w: -0.7071068}
+    m_Value: {x: -0.43924487, y: 0.5516094, z: -0.42934456, w: -0.5643305}
   m_Size:
-    m_Target: 1093.922
+    m_Target: 1542.212
     speed: 2
-    m_Value: 1093.922
+    m_Value: 1542.212
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1593,7 +1593,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Materials
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1603,7 +1603,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Materials
   m_LastFoldersGridSize: 96
   m_LastProjectPath: B:\gameDevFiles\ProceduralLandGeneration
   m_LockTracker:
@@ -1612,9 +1612,9 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_Data: 46964
+    - m_Data: 47164
     m_LastClickedID:
-      m_Data: 46964
+      m_Data: 47164
     m_ExpandedIDs:
     - m_Data: 0
     - m_Data: 46844
@@ -1688,9 +1688,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 46852
+    - m_Data: 46142
     m_LastClickedEntityId:
-      m_Data: 46852
+      m_Data: 46142
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 54396
@@ -1852,7 +1852,7 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -1372
+      - m_Data: -1330
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

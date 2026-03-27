@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using System.Collections;
 
 // This script is following Sebastian Lague's tutorial on procedural generation.
 // Goal of this script is to understand the basics of noise generation for terrain creation.

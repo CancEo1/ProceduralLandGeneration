@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 // Responsible for displaying a generated noise map as a texture in the scene.
 public class MapDisplay : MonoBehaviour

@@ -6,8 +6,11 @@ using UnityEngine.UIElements;
 // Manages the generation and display of terrain chunks around the viewer's position to create an endless terrain effect. Following Sebastian Lague's tutorial.
 public class EndlessTerrain : MonoBehaviour
 {
-    public const float maxViewDst = 450;
+    public LODInfo[] detailLevels;
+    public static float maxViewDst;
+
     public Transform viewer;
+    public Material mapMaterial;
 
     public static Vector2 viewerPosition;
     static MapGenerator mapGenerator;
@@ -57,7 +60,7 @@ public class EndlessTerrain : MonoBehaviour
                 }
                 else
                 {
-                    terrainChunkDictionary.Add(viewedChunkCoord, new TerrainChunk(viewedChunkCoord, chunkSize, transform));
+                    terrainChunkDictionary.Add(viewedChunkCoord, new TerrainChunk(viewedChunkCoord, chunkSize, transform, mapMaterial));
                 }
             }
         }
@@ -68,15 +71,21 @@ public class EndlessTerrain : MonoBehaviour
         Vector2 position;
         Bounds bounds;
 
-        public TerrainChunk(Vector2 coord, int size, Transform parent) 
+        MeshRenderer meshRenderer;
+        MeshFilter meshFilter;
+
+        public TerrainChunk(Vector2 coord, int size, Transform parent, Material material) 
         {
             position = coord * size;
             bounds = new Bounds(position, Vector2.one * size);
             Vector3 positionV3 = new Vector3(position.x, 0, position.y);
-
+            
             meshObject = new GameObject("Terrain Chunk");
+            meshRenderer = meshObject.AddComponent<MeshRenderer>();
+            meshFilter = meshObject.AddComponent<MeshFilter>();
+            meshRenderer.material = material;
+
             meshObject.transform.position = positionV3;
-            meshObject.transform.localScale = Vector3.one * size / 10f;
             meshObject.transform.parent = parent;
             SetVisible(false);
 
@@ -85,7 +94,7 @@ public class EndlessTerrain : MonoBehaviour
 
         void OnMapDataReceived(MapData mapData)
         {
-            print("Received map data for chunk at ");
+
         }
 
         public void UpdateTerrainChunk()
@@ -104,5 +113,38 @@ public class EndlessTerrain : MonoBehaviour
         {
             return meshObject.activeSelf;
         }
+    }
+
+    class LODMesh
+    {
+
+        public Mesh mesh;
+        public bool hasRequestedMesh;
+        public bool hasMesh;
+        int lod;
+
+        public LODMesh(int lod)
+        {
+            this.lod = lod;
+        }
+
+        void OnMeshDataReveived(MeshData meshData)
+        {
+            mesh = meshData.CreateMesh();
+            hasMesh = true;
+        }
+
+        public void RequestMesh(MapData mapData)
+        {
+            hasRequestedMesh = true;
+            mapGenerator.RequestMeshData(mapData, lod, OnMeshDataReveived);
+        }
+    }
+
+    [System.Serializable]
+    public struct LODInfo
+    {
+        public int lod;
+        public float vidibleDstThreshold;
     }
 }

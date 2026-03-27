@@ -8,12 +8,12 @@ using System.Collections.Generic;
 // Generates a procedural map using Perlin noise and displays it. Following Sebastian Lague's tutorial.
 public class MapGenerator : MonoBehaviour
 {
-    public enum DrawMode { NoiseMap, ColourMap, Mesh};
+    public enum DrawMode {NoiseMap, ColourMap, Mesh};
     public DrawMode drawMode;
 
     public const int mapChunkSize = 241;
     [Range(0,6)]
-    public int levelOfDetail;
+    public int editorPreviewLOD;
     public float noiseScale;
 
     public int octaves;
@@ -32,6 +32,7 @@ public class MapGenerator : MonoBehaviour
     public TerrainType[] regions;
 
     Queue<MapThreadInfo<MapData>> mapDataThreadInfoQueue = new Queue<MapThreadInfo<MapData>>();
+    Queue<MapThreadInfo<MeshData>> meshDataThreadInfoQueue = new Queue<MapThreadInfo<MeshData>>();
 
     public void DrawMapInEditor()
     {
@@ -50,26 +51,43 @@ public class MapGenerator : MonoBehaviour
         }
         else if (drawMode == DrawMode.Mesh)
         {
-            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, levelOfDetail), TextureGenerator.TextureFromColourMap(mapData.colourMap, mapChunkSize, mapChunkSize));
+            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, editorPreviewLOD), TextureGenerator.TextureFromColourMap(mapData.colourMap, mapChunkSize, mapChunkSize));
         }
     }
 
     public void RequestMapData(Action<MapData> callback)
     {
-        ThreadStart threadStart = delegate
-            {
+        ThreadStart threadStart = delegate {
             MapDataThread(callback);
         };
 
         new Thread(threadStart).Start();
     }
 
-    public void MapDataThread(Action<MapData> callback)
+    void MapDataThread(Action<MapData> callback)
     {
         MapData mapData = GenerateMapData();
         lock(mapDataThreadInfoQueue)
         {
             mapDataThreadInfoQueue.Enqueue(new MapThreadInfo<MapData>(callback, mapData));
+        }
+    }
+
+    public void RequestMeshData(MapData mapData, int lod,Action<MeshData> callback)
+    {
+        ThreadStart threadStart = delegate {
+            MeshDataThread(mapData, lod, callback);
+        };
+
+        new Thread(threadStart).Start();
+    }
+
+    void MeshDataThread(MapData mapData, int lod, Action<MeshData> callback)
+    {
+        MeshData meshData = MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, lod);
+        lock(meshDataThreadInfoQueue)
+        {
+            meshDataThreadInfoQueue.Enqueue(new MapThreadInfo<MeshData>(callback, meshData));
         }
     }
 
@@ -80,6 +98,15 @@ public class MapGenerator : MonoBehaviour
             for (int i = 0; i < mapDataThreadInfoQueue.Count; i++)
             {
                 MapThreadInfo<MapData> threadInfo = mapDataThreadInfoQueue.Dequeue();
+                threadInfo.callback(threadInfo.parameter);
+            }
+        }
+
+        if (meshDataThreadInfoQueue.Count > 0)
+        {
+            for (int i = 0; i < meshDataThreadInfoQueue.Count; i++)
+            {
+                MapThreadInfo<MeshData> threadInfo = meshDataThreadInfoQueue.Dequeue();
                 threadInfo.callback(threadInfo.parameter);
             }
         }
