@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
 // Generates a procedural map using Perlin noise and displays it. Following Sebastian Lague's tutorial.
+// The script allows for generating a noise map, a color map based on defined terrain regions, and a mesh representation of the terrain.
+// It also supports multithreading for generating map data and mesh data to avoid blocking the main thread, ensuring smooth performance while generating complex terrains.
 public class MapGenerator : MonoBehaviour
 {
     public enum DrawMode {NoiseMap, ColourMap, Mesh};
@@ -34,6 +36,9 @@ public class MapGenerator : MonoBehaviour
     Queue<MapThreadInfo<MapData>> mapDataThreadInfoQueue = new Queue<MapThreadInfo<MapData>>();
     Queue<MapThreadInfo<MeshData>> meshDataThreadInfoQueue = new Queue<MapThreadInfo<MeshData>>();
 
+    // Generates the map data and displays it in the editor based on the selected draw mode (noise map, color map, or mesh).
+    // It uses the GenerateMapData method to create the necessary data and then utilizes the MapDisplay class to
+    // render the appropriate visual representation of the terrain in the editor for previewing purposes.
     public void DrawMapInEditor()
     {
         // Generate the map data using the GenerateMapData method
@@ -55,6 +60,8 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
+    // Requests the generation of map data on a separate thread to avoid blocking the main thread, ensuring smooth performance while generating complex terrains.
+    // The generated map data is then passed back to the main thread through a callback function for further processing or display.
     public void RequestMapData(Action<MapData> callback)
     {
         ThreadStart threadStart = delegate {
@@ -112,6 +119,8 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
+    // Generates the map data by creating a noise map and a corresponding color map based on defined terrain regions.
+    // The noise map is generated using Perlin noise, and the color map assigns colors to each point on the map based on its height and the defined terrain regions.
     MapData GenerateMapData()
     {
         // Generate a noise map using the Noise class
