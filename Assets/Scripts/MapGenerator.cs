@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 // Generates a procedural map using Perlin noise and displays it. Following Sebastian Lague's tutorial.
 // The script allows for generating a noise map, a color map based on defined terrain regions, and a mesh representation of the terrain.
-// It also supports multithreading for generating map data and mesh data to avoid blocking the main thread, ensuring smooth performance while generating complex terrains.
+// Uses multithreading for generating map data and mesh data to avoid blocking the main thread, ensuring smooth performance while generating complex terrains.
 public class MapGenerator : MonoBehaviour
 {
     public enum DrawMode {NoiseMap, ColourMap, Mesh};
