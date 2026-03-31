@@ -13,6 +13,8 @@ public class MapGenerator : MonoBehaviour
     public enum DrawMode {NoiseMap, ColourMap, Mesh};
     public DrawMode drawMode;
 
+    public Noise.NormalizeMode normalizeMode;
+
     public const int mapChunkSize = 241;
     [Range(0,6)]
     public int editorPreviewLOD;
@@ -42,7 +44,7 @@ public class MapGenerator : MonoBehaviour
     public void DrawMapInEditor()
     {
         // Generate the map data using the GenerateMapData method
-        MapData mapData = GenerateMapData();
+        MapData mapData = GenerateMapData(Vector2.zero);
 
         // Display the generated noise map using the MapDisplay class
         MapDisplay display = FindAnyObjectByType<MapDisplay>();
@@ -62,18 +64,18 @@ public class MapGenerator : MonoBehaviour
 
     // Requests the generation of map data on a separate thread to avoid blocking the main thread, ensuring smooth performance while generating complex terrains.
     // The generated map data is then passed back to the main thread through a callback function for further processing or display.
-    public void RequestMapData(Action<MapData> callback)
+    public void RequestMapData(Vector2 centre, Action<MapData> callback)
     {
         ThreadStart threadStart = delegate {
-            MapDataThread(callback);
+            MapDataThread(centre, callback);
         };
 
         new Thread(threadStart).Start();
     }
 
-    void MapDataThread(Action<MapData> callback)
+    void MapDataThread(Vector2 centre, Action<MapData> callback)
     {
-        MapData mapData = GenerateMapData();
+        MapData mapData = GenerateMapData(centre);
         lock(mapDataThreadInfoQueue)
         {
             mapDataThreadInfoQueue.Enqueue(new MapThreadInfo<MapData>(callback, mapData));
@@ -121,10 +123,10 @@ public class MapGenerator : MonoBehaviour
 
     // Generates the map data by creating a noise map and a corresponding color map based on defined terrain regions.
     // The noise map is generated using Perlin noise, and the color map assigns colors to each point on the map based on its height and the defined terrain regions.
-    MapData GenerateMapData()
+    MapData GenerateMapData(Vector2 centre)
     {
         // Generate a noise map using the Noise class
-        float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize, mapChunkSize, seed, noiseScale, octaves, persistance, lacunarity, offset);
+        float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize, mapChunkSize, seed, noiseScale, octaves, persistance, lacunarity, centre + offset, normalizeMode);
 
         Color[] colourMap = new Color[mapChunkSize * mapChunkSize];
         // Create a color map based on the generated noise map and terrain regions
@@ -137,9 +139,10 @@ public class MapGenerator : MonoBehaviour
                 for (int i = 0; i < regions.Length; i++)
                 {
                     // if the current height is less than or equal to the region height, assign the corresponding color
-                    if (currentHeight <= regions[i].height)
+                    if (currentHeight >= regions[i].height)
                     {
                         colourMap[y * mapChunkSize + x] = regions[i].colour;
+                    } else {
                         break;
                     }
                 }
@@ -149,7 +152,7 @@ public class MapGenerator : MonoBehaviour
         return new MapData(noiseMap, colourMap);
     }
 
-    private void OnValidate()
+    void OnValidate()
     {
         if (lacunarity < 1)
         {

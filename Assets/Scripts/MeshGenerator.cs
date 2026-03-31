@@ -42,6 +42,8 @@ public static class MeshGenerator
     }
 }
 
+// The MeshData class holds the vertices, triangles, and UVs for a mesh. It provides methods to add triangles and create a Unity Mesh object from the data.
+// The CreateMesh method constructs a Mesh object using the stored vertices, triangles, and UVs, and recalculates normals for proper lighting effects in the scene.
 public class MeshData
 {
     public Vector3[] vertices;
@@ -65,6 +67,7 @@ public class MeshData
         triangleIndex += 3;
     }
 
+    // Creates a Unity Mesh object from the mesh data, including vertices, triangles, and UVs. It also recalculates normals for proper lighting effects.
     public Mesh CreateMesh()
     {
         Mesh mesh = new Mesh();
