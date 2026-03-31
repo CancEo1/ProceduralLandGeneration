@@ -28,6 +28,8 @@ public class MapGenerator : MonoBehaviour
     public int seed;
     public Vector2 offset;
 
+    public bool useFalloff;
+
     public float meshHeightMultiplier;
     public AnimationCurve meshHeightCurve;
 
@@ -35,8 +37,15 @@ public class MapGenerator : MonoBehaviour
 
     public TerrainType[] regions;
 
+    float[,] falloffMap;
+
     Queue<MapThreadInfo<MapData>> mapDataThreadInfoQueue = new Queue<MapThreadInfo<MapData>>();
     Queue<MapThreadInfo<MeshData>> meshDataThreadInfoQueue = new Queue<MapThreadInfo<MeshData>>();
+
+    void Awake()
+    {
+        falloffMap = FalloffGenerator.GenerateFalloffMap(mapChunkSize);
+    }
 
     // Generates the map data and displays it in the editor based on the selected draw mode (noise map, color map, or mesh).
     // It uses the GenerateMapData method to create the necessary data and then utilizes the MapDisplay class to
@@ -138,6 +147,10 @@ public class MapGenerator : MonoBehaviour
         {
             for (int x = 0; x < mapChunkSize; x++)
             {
+                if (useFalloff)
+                {
+                    noiseMap[x, y] = Mathf.Clamp01(noiseMap[x, y] - falloffMap[x, y]);
+                }
                 // Assign a color to each point on the map based on its height and the defined terrain regions
                 float currentHeight = noiseMap[x, y];
                 for (int i = 0; i < regions.Length; i++)
@@ -166,6 +179,8 @@ public class MapGenerator : MonoBehaviour
         {
             octaves = 0;
         }
+
+        falloffMap = FalloffGenerator.GenerateFalloffMap(mapChunkSize);
     }
 
     struct MapThreadInfo<T>

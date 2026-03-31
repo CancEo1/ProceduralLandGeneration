@@ -14,9 +14,17 @@ public static class FalloffGenerator
                 float y = j / (float)size * 2 - 1;
 
                 float value = Mathf.Max(Mathf.Abs(x), Mathf.Abs(y));
-                map[i, j] = value;
+                map[i, j] = Evaluate(value);
             }
         }
         return map;
+    }
+
+    static float Evaluate(float value)
+    {
+        float a = 3f;
+        float b = 2.2f;
+
+        return Mathf.Pow(value, a) / (Mathf.Pow(value, a) + Mathf.Pow(b - b * value, a));
     }
 }

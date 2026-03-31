@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2293.3335
     height: 884
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Inspector
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -1350,9 +1350,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -5.144806, y: -0.0000145111335, z: 121.72839}
+    m_Target: {x: -99.71552, y: 280.7548, z: -151.81177}
     speed: 2
-    m_Value: {x: -5.144806, y: -0.0000145111335, z: 121.72839}
+    m_Value: {x: -99.71552, y: 280.7548, z: -151.81177}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1403,9 +1403,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.7071068, y: 0, z: -0, w: -0.7071068}
   m_Size:
-    m_Target: 856.2151
+    m_Target: 768.7021
     speed: 2
-    m_Value: 856.2151
+    m_Value: 768.7021
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1593,7 +1593,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Materials
+    - Assets/Scripts
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1603,7 +1603,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Materials
+  - Assets/Scripts
   m_LastFoldersGridSize: 96
   m_LastProjectPath: B:\gameDevFiles\ProceduralLandGeneration
   m_LockTracker:
@@ -1612,16 +1612,16 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_Data: 47156
+    - m_Data: 46846
     m_LastClickedID:
-      m_Data: 47156
+      m_Data: 46846
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 46844
-    - m_Data: 46846
-    - m_Data: 46848
-    - m_Data: 46850
-    - m_Data: 46852
+    - m_Data: 47004
+    - m_Data: 47006
+    - m_Data: 47008
+    - m_Data: 47010
+    - m_Data: 47012
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1655,11 +1655,11 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 46844
-    - m_Data: 46846
-    - m_Data: 46848
-    - m_Data: 46850
-    - m_Data: 46852
+    - m_Data: 47004
+    - m_Data: 47006
+    - m_Data: 47008
+    - m_Data: 47010
+    - m_Data: 47012
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1688,9 +1688,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 46772
+    - m_Data: 46720
     m_LastClickedEntityId:
-      m_Data: 46772
+      m_Data: 46720
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 54396
