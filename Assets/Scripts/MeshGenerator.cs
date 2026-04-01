@@ -8,15 +8,18 @@ public static class MeshGenerator
     {
         AnimationCurve heightCurve = new AnimationCurve(_heightCurve.keys);
 
+        int meshSimplificationIncrement = (levelOfDetail == 0) ? 1 : levelOfDetail * 2;
+
         // Get dimensions of the height map
         int borderedSize = heightMap.GetLength(0);
-        int meshSize = borderedSize - 2; // Exclude the border vertices
+        int meshSize = borderedSize - 2 * meshSimplificationIncrement; // Exclude the border vertices
+        int meshSizeUnsimplified = borderedSize - 2;
 
-        float topLeftX = (borderedSize - 1) / -2f;
-        float topLeftZ = (borderedSize - 1) / 2f;
+        float topLeftX = (meshSizeUnsimplified - 1) / -2f;
+        float topLeftZ = (meshSizeUnsimplified - 1) / 2f;
 
         // If level of detail is 0, Then we want to use every vertex. Otherwise, we skip vertices based on the level of detail.
-        int meshSimplificationIncrement = (levelOfDetail == 0)?1:levelOfDetail * 2;
+        
         int verticesPerLine = (borderedSize - 1) / meshSimplificationIncrement + 1;
 
         MeshData meshData = new MeshData(verticesPerLine);
@@ -51,7 +54,7 @@ public static class MeshGenerator
                 int vertexIndex = vertexIndicesMap[x, y];
                 Vector2 percent = new Vector2((x - meshSimplificationIncrement) / (float)meshSize, (y - meshSimplificationIncrement) / (float)meshSize);
                 float height = heightCurve.Evaluate(heightMap[x, y]) * heightMultiplier;
-                Vector3 vertexPosition = new Vector3(topLeftX + percent.x * meshSize, height, topLeftZ - percent.y * meshSize);
+                Vector3 vertexPosition = new Vector3(topLeftX + percent.x * meshSizeUnsimplified, height, topLeftZ - percent.y * meshSizeUnsimplified);
 
                 meshData.AddVertex(vertexPosition, percent, vertexIndex);
 
