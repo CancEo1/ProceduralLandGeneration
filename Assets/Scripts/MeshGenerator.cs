@@ -8,7 +8,7 @@ public static class MeshGenerator
     {
         AnimationCurve heightCurve = new AnimationCurve(_heightCurve.keys);
 
-        int meshSimplificationIncrement = (levelOfDetail == 0) ? 1 : levelOfDetail * 2;
+        int meshSimplificationIncrement = (levelOfDetail == 0)?1:levelOfDetail * 2;
 
         // Get dimensions of the height map
         int borderedSize = heightMap.GetLength(0);
@@ -20,7 +20,7 @@ public static class MeshGenerator
 
         // If level of detail is 0, Then we want to use every vertex. Otherwise, we skip vertices based on the level of detail.
         
-        int verticesPerLine = (borderedSize - 1) / meshSimplificationIncrement + 1;
+        int verticesPerLine = (meshSize - 1) / meshSimplificationIncrement + 1;
 
         MeshData meshData = new MeshData(verticesPerLine);
 
@@ -32,7 +32,7 @@ public static class MeshGenerator
         {
             for (int x = 0; x < borderedSize; x += meshSimplificationIncrement)
             {
-                bool isBorderVertex = (y == 0 || y == borderedSize - 1 || x == 0 || x == borderedSize - 1);
+                bool isBorderVertex = y == 0 || y == borderedSize - 1 || x == 0 || x == borderedSize - 1;
 
                 if (isBorderVertex)
                 {
@@ -41,7 +41,7 @@ public static class MeshGenerator
                 } else
                 {
                     vertexIndicesMap[x, y] = meshVertexIndex;
-                    borderVertexIndex++;
+                    meshVertexIndex++;
                 }
             }
         }
@@ -150,7 +150,7 @@ public class MeshData
         }
 
         int borderTriangleCount = borderTriangles.Length / 3;
-        for (int i = 0; i < triangleCount; i++)
+        for (int i = 0; i < borderTriangleCount; i++)
         {
             int normalTriangleIndex = i * 3;
             int vertexIndexA = borderTriangles[normalTriangleIndex];
@@ -183,8 +183,8 @@ public class MeshData
     Vector3 SurfaceNormalFromIndices(int indexA, int indexB, int indexC)
     {
         Vector3 pointA = (indexA < 0)?borderVertices[-indexA - 1] : vertices[indexA];
-        Vector3 pointB = (indexB < 0) ? borderVertices[-indexB - 1] : vertices[indexB];
-        Vector3 pointC = (indexC < 0) ? borderVertices[-indexC - 1] : vertices[indexC];
+        Vector3 pointB = (indexB < 0)?borderVertices[-indexB - 1] : vertices[indexB];
+        Vector3 pointC = (indexC < 0)?borderVertices[-indexC - 1] : vertices[indexC];
 
         Vector3 sideAB = pointB - pointA;
         Vector3 sideAC = pointC - pointA;
