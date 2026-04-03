@@ -39,6 +39,8 @@ public class MapGenerator : MonoBehaviour
 
     float[,] falloffMap;
 
+    public LayerMask whatIsGround;
+
     Queue<MapThreadInfo<MapData>> mapDataThreadInfoQueue = new Queue<MapThreadInfo<MapData>>();
     Queue<MapThreadInfo<MeshData>> meshDataThreadInfoQueue = new Queue<MapThreadInfo<MeshData>>();
 
