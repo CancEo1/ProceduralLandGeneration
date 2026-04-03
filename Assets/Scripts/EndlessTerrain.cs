@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 // The script dynamically loads and unloads terrain chunks based on the viewer's position and the defined level of detail thresholds to optimize performance while maintaining visual quality.
 public class EndlessTerrain : MonoBehaviour
 {
-    const float scale = 5f;
+    const float scale = 2f;
 
     const float viewerMoveThresholdForChunkUpdate = 25f;
     const float sqrviewerMoveThresholdForChunkUpdate = viewerMoveThresholdForChunkUpdate * viewerMoveThresholdForChunkUpdate;
