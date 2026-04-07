@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu()]
-public class NoiseData : ScriptableObject
+public class NoiseData : UpdateableData
 {
     public Noise.NormalizeMode normalizeMode;
 
@@ -15,7 +15,7 @@ public class NoiseData : ScriptableObject
     public int seed;
     public Vector2 offset;
 
-    private void OnValidate()
+    protected override void OnValidate()
     {
         if (lacunarity < 1)
         {
@@ -25,6 +25,6 @@ public class NoiseData : ScriptableObject
         {
             octaves = 0;
         }
-
+        base.OnValidate();
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu()]
-public class TerrainData : ScriptableObject
+public class TerrainData : UpdateableData
 {
     public float uniformScale = 2.5f;
     public bool useFlatShading;

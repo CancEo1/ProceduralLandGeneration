@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 250a7208730e1734f9560f7d615129df, type: 3}
   m_Name: DefaultNoise
   m_EditorClassIdentifier: Assembly-CSharp::NoiseData
+  autoUpdate: 1
   normalizeMode: 0
-  noiseScale: 0
-  octaves: 0
-  persistance: 0
-  lacunarity: 0
+  noiseScale: 42
+  octaves: 6
+  persistance: 0.47
+  lacunarity: 2
   seed: 0
   offset: {x: 0, y: 0}
