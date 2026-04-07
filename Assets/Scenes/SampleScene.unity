@@ -310,7 +310,7 @@ MonoBehaviour:
     colour: {r: 1, g: 1, b: 1, a: 0}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!4 &155862837
 Transform:
   m_ObjectHideFlags: 0
@@ -1069,7 +1069,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615765795}
-  m_Mesh: {fileID: 2097312193}
+  m_Mesh: {fileID: 1842604085}
 --- !u!4 &615765798
 Transform:
   m_ObjectHideFlags: 0
@@ -1565,7 +1565,7 @@ Transform:
   - {fileID: 350799476}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &2097312193
+--- !u!43 &1842604085
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

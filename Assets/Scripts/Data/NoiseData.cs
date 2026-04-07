@@ -15,5 +15,16 @@ public class NoiseData : ScriptableObject
     public int seed;
     public Vector2 offset;
 
+    private void OnValidate()
+    {
+        if (lacunarity < 1)
+        {
+            lacunarity = 1;
+        }
+        if (octaves < 0)
+        {
+            octaves = 0;
+        }
 
+    }
 }
